@@ -1,0 +1,118 @@
+= Модуль Notification service
+:toc: macro
+
+== 1. Описание модуля
+
+Notification service представляет собой SOAP веб - сервис для отправки email.
+
+== 2. Описание формата отправки результатов классификации
+
+=== 2.1. Структура SOAP - запроса отправки email запроса
+
+[source,xml]
+----
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:notification="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <notification:emailRequest>
+            <notification:sender>sender@mail.ru</notification:sender>
+            <notification:receiver>receiver@mail.ru</notification:receiver>
+            <notification:subject>notification</notification:subject>
+            <notification:message>Hello!</notification:message>
+            <notification:html>false</notification:html>
+        </notification:emailRequest>
+    </soapenv:Body>
+</soapenv:Envelope>
+----
+
+=== 2.2. Описание полей SOAP - запроса отправки email запроса
+
+==== 2.2.1. Описание полей блока EmailRequest
+
+[options="header"]
+|===
+|№|Название поля|Тип|Обязательное|Описание|Комментарий
+|1
+|sender
+|string
+|+
+|Email отправителя
+|
+|2
+|receiver
+|string
+|+
+|Email получателя
+|
+|3
+|subject
+|string
+|-
+|Тема письма
+|
+|4
+|message
+|string
+|-
+|Текст письма
+|
+|5
+|html
+|boolean
+|-
+|Письмо в формате HTML?
+|
+|===
+
+== 3. Описание формата ответа на запрос об отправке email
+
+=== 3.1. Структура SOAP - ответа на запрос об отправке email
+
+[source,xml]
+----
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <SOAP-ENV:emailResponse>
+            <SOAP-ENV:requestId>611bab87-d40e-44e4-8843-2c5e4faaaceb</SOAP-ENV:requestId>
+            <SOAP-ENV:status>SUCCESS</SOAP-ENV:status>
+        </SOAP-ENV:emailResponse>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+----
+
+=== 3.2. Описание полей ответа на запрос об отправке email
+
+[options="header"]
+|===
+|№|Название поля|Тип|Обязательное|Описание|Комментарий
+|1
+|requestId
+|string
+|+
+|Уникальный идентификатор запроса
+|
+|2
+|status
+|ResponseStatus
+|+
+|Статус ответа
+|Заполняется по справочнику <<Справочник значений ResponseStatus>>
+|===
+
+== Справочник значений ResponseStatus
+
+[options="header"]
+|===
+|№|Код ответа|Описание
+|1
+|SUCCESS
+|Заявка была успешно создана
+|2
+|ERROR
+|Произошла какая то ошибка при создании заявки
+|3
+|INVALID_REQUEST_PARAMS
+|Не заданы обязательные параметры в запросе
+|===
