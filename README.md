@@ -42,7 +42,7 @@ Notification service v1.0
 
 2. Далее, необходимо собрать проект с помощью команды:
 
-mvn clean install dockerfile:build mvn clean install dockerfile:build -Dspring.datasource.url=jdbc:postgresql://notification-db:5432/mail -Dspring.jpa.hibernate.ddl-auto=update
+mvn clean install dockerfile:build
 
 3. Используя пакетный менеджер docker-compose, создать docker контейнеры с помощью команды:
 
