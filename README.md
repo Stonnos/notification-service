@@ -32,7 +32,22 @@ Notification service v1.0
 
    mvn clean install
    
-2. Развернуть target/notification-service-1.0.war на одном из контейнеров сервлетов (например, Tomcat)
+2. Развернуть target/notification-service.war на одном из контейнеров сервлетов (например, Tomcat)
    с префиксом /notification-service.
+   
+Инструкция по развертыванию в Docker
+-------------------------------------------------------
+
+1. Для Windows достаточно скачать и установить дистрибутив Docker Desktop (https://www.docker.com/products/docker-desktop).
+
+2. Далее, необходимо собрать проект с помощью команды:
+
+mvn clean install dockerfile:build mvn clean install dockerfile:build -Dspring.datasource.url=jdbc:postgresql://notification-db:5432/mail -Dspring.jpa.hibernate.ddl-auto=update
+
+3. Используя пакетный менеджер docker-compose, создать docker контейнеры с помощью команды:
+
+docker-compose up
+
+ВАЖНО! Данную команду необходимо выполнять из корневой папки проекта.
 
    

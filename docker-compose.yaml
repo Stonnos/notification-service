@@ -1,0 +1,30 @@
+version: '3.5'
+services:
+
+  notification-db:
+    image: postgres:9.6.9
+    container_name: notification-db
+    volumes:
+      - ./scripts/postgresinit.sql:/docker-entrypoint-initdb.d/postgresinit.sql
+    ports:
+      - "5435:5432"
+    networks:
+      - default
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  notification-service:
+    image: notification-service
+    container_name: notification-service
+    ports:
+      - "8082:8080"
+    networks:
+      - default
+    depends_on:
+      - notification-db
+
+networks:
+  default:
+    name: app-network
+    driver: bridge
