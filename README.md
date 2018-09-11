@@ -50,4 +50,8 @@ docker-compose up
 
 ВАЖНО! Данную команду необходимо выполнять из корневой папки проекта.
 
+Для развертывания окружения на production, в файле application.yml необходимо установить следующие параметры:
+
+  * spring.datasource.url=jdbc:postgresql://notification-db:5432/mail
+
    
