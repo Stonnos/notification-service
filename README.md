@@ -40,7 +40,7 @@ Notification service v1.0
 
 1. Для Windows достаточно скачать и установить дистрибутив Docker Desktop (https://www.docker.com/products/docker-desktop).
 
-2. Далее, необходимо собрать проект с помощью команды:
+2. Далее для сборки проекта и создания образа проекта нужно выполнить команду
 
 mvn clean install dockerfile:build
 
