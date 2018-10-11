@@ -1,4 +1,4 @@
-Notification service v1.0
+Notification service v1.1
 ========================================
 
 Описание
@@ -16,12 +16,12 @@ Notification service v1.0
 ----------------------------------------
 Настройки для проекта находятся в файле application.yml. Ниже приведены основные параметры:
 1) spring.datasource - настройки БД для хранения информации
-2) webServiceConfig - настройки конфигурации веб - сервиса
-    * webServiceConfig.wsdlConfig.portTypeName - список операций, которые могут быть выполнены с сообщениями
-    * webServiceConfig.wsdlConfig.locationUri - url веб - сервиса
-    * webServiceConfig.wsdlConfig.targetNamespace - целевое пространство имен схемы
-    * webServiceConfig.wsdlConfig.xsdSchema: путь к xsd схеме
-3) mailConfig - основные настройки модуля
+2) web-service-config - настройки конфигурации веб - сервиса
+    * web-service-config.wsdlConfig.portTypeName - список операций, которые могут быть выполнены с сообщениями
+    * web-service-config.wsdlConfig.locationUri - url веб - сервиса
+    * web-service-config.wsdlConfig.targetNamespace - целевое пространство имен схемы
+    * web-service-config.wsdlConfig.xsdSchema: путь к xsd схеме
+3) mail-config - основные настройки модуля
     * maxFailedAttemptsToSent - максимальное число попыток для отправки email
     * pageSize - число писем для отправки за один раз
     * delaySeconds - интервал в сек. между отправками писем
