@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Roman Batygin
  */
 @Data
-@ConfigurationProperties("mailConfig")
+@ConfigurationProperties("mail-config")
 public class MailConfig {
 
     /**

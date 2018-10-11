@@ -10,6 +10,7 @@ Notification service v1.0
 * jdk 1.8
 * maven >= 3.3.9
 * База данных PostgreSQL для хранения информации.
+* Tomcat  >= 8
 
 Описание ключевой конфигурации модуля
 ----------------------------------------
@@ -32,7 +33,7 @@ Notification service v1.0
 
    mvn clean install
    
-2. Развернуть target/notification-service.war на одном из контейнеров сервлетов (например, Tomcat)
+2. Развернуть target/notification-service.war на одном из контейнеров сервлетов (например, Tomcat 8)
    с префиксом /notification-service.
    
 Инструкция по развертыванию в Docker

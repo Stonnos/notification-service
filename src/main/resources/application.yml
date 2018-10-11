@@ -20,13 +20,18 @@ spring:
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
 
-mailConfig:
+mail-config:
   maxFailedAttemptsToSent: 10
   pageSize: 10
   delaySeconds: 10
 
-webServiceConfig:
+web-service-config:
   wsdlConfig:
     portTypeName: NotificationPort
     locationUri: /ws

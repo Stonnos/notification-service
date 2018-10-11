@@ -8,7 +8,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.Table;
 import java.time.LocalDateTime;
 
@@ -49,7 +48,7 @@ public class Email {
     /**
      * Email text
      */
-    @Lob
+    @Column(columnDefinition = "text")
     private String message;
 
     /**
@@ -78,8 +77,7 @@ public class Email {
     /**
      * Error reason
      */
-    @Lob
-    @Column(name = "error_message")
+    @Column(name = "error_message", columnDefinition = "text")
     private String errorMessage;
 
     /**

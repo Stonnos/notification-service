@@ -43,11 +43,11 @@ public class MailScheduler {
     /**
      * Processes not sent emails.
      */
-    @Scheduled(fixedDelayString = "${mailConfig.delaySeconds}000")
+    @Scheduled(fixedDelayString = "${mail-config.delaySeconds}000")
     public void sendEmails() {
         List<Email> emails =
                 emailRepository.findByStatusNotInOrderBySaveDate(Arrays.asList(EmailStatus.SENT, EmailStatus.EXCEEDED),
-                        new PageRequest(0, mailConfig.getPageSize()));
+                        PageRequest.of(0, mailConfig.getPageSize()));
         log.trace("{} not sent emails has been found.", emails.size());
         for (Email email : emails) {
             try {
