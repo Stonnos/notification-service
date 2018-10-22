@@ -13,10 +13,14 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      TZ: "Asia/Novosibirsk"
+      PGTZ: "Asia/Novosibirsk"
 
   notification-service:
     image: notification-service
     container_name: notification-service
+    environment:
+      TZ: "Asia/Novosibirsk"
     ports:
       - "8082:8080"
     networks:
