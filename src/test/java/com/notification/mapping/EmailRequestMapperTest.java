@@ -6,7 +6,7 @@ import com.notification.model.EmailStatus;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import static com.notification.TestHelperUtils.createEmailRequest;
  * Unit tests for checking {@link EmailRequestMapper} functionality.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@Import(EmailRequestMapperImpl.class)
 public class EmailRequestMapperTest {
 
     @Inject
