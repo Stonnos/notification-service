@@ -19,8 +19,6 @@ services:
   notification-service:
     image: notification-service
     container_name: notification-service
-    volumes:
-      - ./scripts/wait-for-it.sh:/usr/local/bin/wait-for-it.sh
     command: ["/wait-for-it.sh", "notification-db:5432", "--timeout=45", "--", "catalina.sh", "run"]
     environment:
       TZ: "Asia/Novosibirsk"
