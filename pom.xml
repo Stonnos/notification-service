@@ -33,7 +33,6 @@
         <xmlschema.version>2.2.3</xmlschema.version>
         <jaxb2-maven-plugin.version>2.3</jaxb2-maven-plugin.version>
         <docker-maven-plugin.version>1.4.3</docker-maven-plugin.version>
-        <maven-plugin.version>3.2.0</maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -192,6 +191,7 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
 
             <plugin>
@@ -282,15 +282,6 @@
                 <configuration>
                     <skip>false</skip>
                     <repository>${project.artifactId}</repository>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>${maven-plugin.version}</version>
-                <configuration>
-                    <warName>${project.artifactId}</warName>
                 </configuration>
             </plugin>
 
