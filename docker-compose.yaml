@@ -6,6 +6,7 @@ services:
     container_name: notification-db
     volumes:
       - ./scripts/postgresinit.sql:/docker-entrypoint-initdb.d/postgresinit.sql
+      - /home/notification-pgdata:/var/lib/postgresql/data
     ports:
       - "5435:5432"
     networks:

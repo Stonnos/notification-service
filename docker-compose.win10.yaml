@@ -1,0 +1,11 @@
+version: '3.5'
+services:
+
+  notification-db:
+    volumes:
+      - ./scripts/postgresinit.sql:/docker-entrypoint-initdb.d/postgresinit.sql
+      - notification-pgdata:/var/lib/postgresql/data
+
+volumes:
+  notification-pgdata:
+    name: notification-pgdata
