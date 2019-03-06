@@ -56,9 +56,9 @@ public class EmailEndpoint {
     public EmailResponse saveRequest(@RequestPayload EmailRequest emailRequest) {
         ResponseStatus responseStatus = ResponseStatus.SUCCESS;
         String uuid = UUID.randomUUID().toString();
-        log.info("Received email request with id '{}'.", uuid);
+        log.info("Received email request with uuid '{}'.", uuid);
         if (!validateEmailRequest(emailRequest)) {
-            log.warn("Email request with id '{}' is invalid!");
+            log.warn("Email request with uuid '{}' is invalid!", uuid);
             responseStatus = ResponseStatus.INVALID_REQUEST_PARAMS;
         } else {
             try {
@@ -66,9 +66,9 @@ public class EmailEndpoint {
                 email.setUuid(uuid);
                 email.setSaveDate(LocalDateTime.now());
                 emailRepository.save(email);
-                log.info("Email request with id '{}' has been saved.", uuid);
+                log.info("Email request with uuid '{}' has been saved.", uuid);
             } catch (Exception ex) {
-                log.error("There was an error while saving email with id '{}': {}", uuid, ex.getMessage());
+                log.error("There was an error while saving email with uuid '{}': {}", uuid, ex.getMessage());
                 responseStatus = ResponseStatus.ERROR;
             }
         }
