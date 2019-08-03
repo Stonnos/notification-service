@@ -17,6 +17,8 @@ import java.util.List;
 
 /**
  * Email scheduler.
+ *
+ * @author Roman Batygin
  */
 @Slf4j
 @Service

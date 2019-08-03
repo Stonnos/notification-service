@@ -1,4 +1,4 @@
-Notification service v1.1
+Notification service v1.2
 ========================================
 
 Описание
@@ -10,7 +10,7 @@ Notification service v1.1
 * jdk 1.8
 * maven >= 3.3.9
 * База данных PostgreSQL для хранения информации.
-* Tomcat  >= 8
+* Tomcat >= 8
 
 Описание ключевой конфигурации модуля
 ----------------------------------------
@@ -45,12 +45,13 @@ Notification service v1.1
 
 2. Далее для сборки проекта и создания образа проекта нужно выполнить команду
 
-mvn clean install dockerfile:build
+    mvn clean install dockerfile:build
 
 3. Используя пакетный менеджер docker-compose, создать docker контейнеры с помощью команды:
 
-docker-compose up (для ОС семейства Linux)
-docker-compose -f docker-compose.yaml -f docker-compose.win10.yaml up (для Windows 10)
+    docker-compose up (для ОС семейства Linux)
+    
+    docker-compose -f docker-compose.yaml -f docker-compose.win10.yaml up (для Windows 10)
 
 ВАЖНО! Данную команду необходимо выполнять из корневой папки проекта.
 
