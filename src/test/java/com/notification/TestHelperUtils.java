@@ -3,22 +3,23 @@ package com.notification;
 import com.notification.dto.EmailRequest;
 import com.notification.model.Email;
 import com.notification.model.EmailStatus;
+import lombok.experimental.UtilityClass;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
  * Test helper utility class.
+ *
+ * @author Roman Batygin
  */
+@UtilityClass
 public class TestHelperUtils {
 
     private static final String MESSAGE = "message";
     private static final String SUBJECT = "subject";
     private static final String SENDER_MAIL_RU = "sender@mail.ru";
     private static final String RECEIVER_MAIL_RU = "receiver@mail.ru";
-
-    private TestHelperUtils() {
-    }
 
     /**
      * Creates email request.

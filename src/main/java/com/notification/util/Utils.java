@@ -3,18 +3,19 @@ package com.notification.util;
 import com.notification.dto.EmailRequest;
 import com.notification.dto.EmailResponse;
 import com.notification.dto.ResponseStatus;
+import lombok.experimental.UtilityClass;
 import org.springframework.util.StringUtils;
 
 /**
  * Utility class.
+ *
+ * @author Roman Batygin
  */
+@UtilityClass
 public class Utils {
 
     private static final String EMAIL_REGEX =
             "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-    private Utils() {
-    }
 
     /**
      * Creates email response.
