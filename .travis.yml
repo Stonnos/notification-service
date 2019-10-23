@@ -1,6 +1,5 @@
 language: java
-#jdk: oraclejdk8
-script: mvn clean install
-#notifications:
-#  on_success: always
-#  on_failure: always
+jdk: oraclejdk8
+dist: trusty
+script:
+  - mvn clean install
