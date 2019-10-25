@@ -22,6 +22,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <postresql.version>42.2.6</postresql.version>
         <lombok.version>1.18.4</lombok.version>
+        <liquibase.version>3.7.0</liquibase.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <assertj.core.version>3.13.1</assertj.core.version>
         <mockito.version>1.10.19</mockito.version>
@@ -65,6 +66,12 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>${postresql.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
         </dependency>
 
         <dependency>

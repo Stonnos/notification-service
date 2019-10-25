@@ -25,6 +25,9 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+  liquibase:
+    contexts: schema,data
+    change-log: classpath:db/liquibase-changelog.xml
 
 mail-config:
   maxFailedAttemptsToSent: 10
