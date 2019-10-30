@@ -1,4 +1,4 @@
-!target/*.war
+!target/*.txt
 src/
 doc/
 .git
