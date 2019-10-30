@@ -1,4 +1,3 @@
 **
-!target/*.war
 !scripts/*.sh
 !dockerfile
