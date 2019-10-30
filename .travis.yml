@@ -5,7 +5,6 @@ services:
 script: mvn clean install dockerfile:build
 after_success:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - docker images
   - docker pull $DOCKER_USERNAME/$DOCKER_REPOSITORY:$TAG_NAME
   - docker tag $IMAGE_NAME $DOCKER_USERNAME/$DOCKER_REPOSITORY:$TAG_NAME
   - docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$TAG_NAME
