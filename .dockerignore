@@ -1,7 +1,6 @@
 target/
 src/
 doc/
-scripts/
 .git
 .gitignore
 .travis*
