@@ -1,5 +1,5 @@
 target/
-!target/*.txt
+!target/*.war
 src/
 doc/
 .git
