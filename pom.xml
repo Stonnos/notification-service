@@ -32,6 +32,7 @@
         <xmlschema.version>2.2.3</xmlschema.version>
         <jaxb2-maven-plugin.version>2.3</jaxb2-maven-plugin.version>
         <docker-maven-plugin.version>1.4.3</docker-maven-plugin.version>
+        <docker.image.name>${project.artifactId}</docker.image.name>
     </properties>
 
     <dependencies>
@@ -269,7 +270,7 @@
                 <inherited>false</inherited>
                 <configuration>
                     <skip>false</skip>
-                    <repository>${project.artifactId}</repository>
+                    <repository>${docker.image.name}</repository>
                 </configuration>
             </plugin>
 
