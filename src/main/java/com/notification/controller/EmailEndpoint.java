@@ -6,13 +6,12 @@ import com.notification.dto.ResponseStatus;
 import com.notification.mapping.EmailRequestMapper;
 import com.notification.model.Email;
 import com.notification.repository.EmailRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-
-import javax.inject.Inject;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -25,6 +24,7 @@ import static com.notification.util.Utils.validateEmailRequest;
  */
 @Slf4j
 @Endpoint
+@RequiredArgsConstructor
 public class EmailEndpoint {
 
     private static final String NAMESPACE_URI = "http://schemas.xmlsoap.org/soap/envelope/";
@@ -32,18 +32,6 @@ public class EmailEndpoint {
 
     private final EmailRepository emailRepository;
     private final EmailRequestMapper emailRequestMapper;
-
-    /**
-     * Constructor with spring dependency injection.
-     *
-     * @param emailRepository    - email repository bean
-     * @param emailRequestMapper - email request mapper bean
-     */
-    @Inject
-    public EmailEndpoint(EmailRepository emailRepository, EmailRequestMapper emailRequestMapper) {
-        this.emailRepository = emailRepository;
-        this.emailRequestMapper = emailRequestMapper;
-    }
 
     /**
      * Saves email request.

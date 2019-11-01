@@ -1,13 +1,13 @@
 package com.notification.service;
 
 import com.notification.model.Email;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -18,19 +18,10 @@ import javax.mail.internet.MimeMessage;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class MailSenderService {
 
     private final JavaMailSender mailSender;
-
-    /**
-     * Constructor with dependency spring injection.
-     *
-     * @param mailSender - java mail sender bean
-     */
-    @Inject
-    public MailSenderService(JavaMailSender mailSender) {
-        this.mailSender = mailSender;
-    }
 
     /**
      * Sends email.

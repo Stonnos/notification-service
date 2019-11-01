@@ -5,12 +5,12 @@ import com.notification.model.Email;
 import com.notification.model.EmailStatus;
 import com.notification.repository.EmailRepository;
 import com.notification.service.MailSenderService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -22,25 +22,12 @@ import java.util.List;
  */
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class MailScheduler {
 
     private final MailConfig mailConfig;
     private final MailSenderService mailSenderService;
     private final EmailRepository emailRepository;
-
-    /**
-     * Constructor with spring dependency injection.
-     *
-     * @param mailConfig        - mail config bean
-     * @param mailSenderService - mail sender service bean
-     * @param emailRepository   - email repository bean
-     */
-    @Inject
-    public MailScheduler(MailConfig mailConfig, MailSenderService mailSenderService, EmailRepository emailRepository) {
-        this.mailConfig = mailConfig;
-        this.mailSenderService = mailSenderService;
-        this.emailRepository = emailRepository;
-    }
 
     /**
      * Processes not sent emails.
