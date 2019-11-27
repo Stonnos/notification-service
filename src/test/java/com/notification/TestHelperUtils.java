@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 @UtilityClass
 public class TestHelperUtils {
-
+gf
     private static final String MESSAGE = "message";
     private static final String SUBJECT = "subject";
     private static final String SENDER_MAIL_RU = "sender@mail.ru";
