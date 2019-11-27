@@ -21,6 +21,8 @@ jobs:
         script:
           - docker tag $IMAGE_NAME $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_NAME;
           - docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_NAME;
+        on:
+          branch: feature/change-ci
 cache:
   directories:
     - $HOME/.m2
