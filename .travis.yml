@@ -6,6 +6,7 @@ services:
 stages:
   - name: test
   - name: build_image
+    if: branch = master
 
 jobs:
   include:
