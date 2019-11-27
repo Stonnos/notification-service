@@ -2,13 +2,26 @@ language: java
 jdk: openjdk8
 services:
   - docker
-script: mvn clean install dockerfile:build -Ddocker.image.name=$IMAGE_NAME
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD;
-      docker tag $IMAGE_NAME $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_NAME;
-      docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_NAME;
-    fi
+
+stages:
+  - name: test
+  - name: build_image
+    if: branch = master
+
+jobs:
+  include:
+    - stage: test
+      script: mvn clean test
+    - stage: build_image
+      script:
+        - mvn clean install dockerfile:build -Dmaven.test.skip=true -Ddocker.image.name=$IMAGE_NAME
+      before_deploy:
+        - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD;
+      deploy:
+        provider: script
+        script:
+          - docker tag $IMAGE_NAME $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_NAME;
+          - docker push $DOCKER_USERNAME/$DOCKER_REPOSITORY:$IMAGE_NAME;
 cache:
   directories:
     - $HOME/.m2
