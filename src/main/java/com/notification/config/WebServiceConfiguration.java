@@ -1,5 +1,6 @@
 package com.notification.config;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -19,19 +20,10 @@ import org.springframework.xml.xsd.XsdSchema;
  */
 @EnableWs
 @Configuration
+@EnableConfigurationProperties(WebServiceConfig.class)
 public class WebServiceConfiguration extends WsConfigurerAdapter {
 
     private static final String WS_URL_MAPPINGS = "/ws/*";
-
-    /**
-     * Creates web service config bean.
-     *
-     * @return web service config bean
-     */
-    @Bean
-    public WebServiceConfig webServiceConfig() {
-        return new WebServiceConfig();
-    }
 
     /**
      * Bean for setting up servlet properties.
