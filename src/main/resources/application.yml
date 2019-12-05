@@ -34,7 +34,6 @@ spring:
 mail-config:
   maxFailedAttemptsToSent: 10
   pageSize: 10
-  delaySeconds: 10
 
 web-service-config:
   wsdlConfig:
