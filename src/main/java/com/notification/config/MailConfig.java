@@ -21,4 +21,9 @@ public class MailConfig {
      * Page size for emails sending
      */
     private Integer pageSize;
+
+    /**
+     * Delay in seconds for sent email job
+     */
+    private Integer delaySeconds;
 }
