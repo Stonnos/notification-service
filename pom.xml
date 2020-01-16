@@ -38,6 +38,10 @@
         <docker.image.name>${project.artifactId}</docker.image.name>
         <jacoco-plugin.version>0.7.7.201606060606</jacoco-plugin.version>
         <jacoco.minCoverage>0.40</jacoco.minCoverage>
+        <sonar.test.exclusions>
+            **/config/**,
+            **/notification/NotificationApplication.java
+        </sonar.test.exclusions>
     </properties>
 
     <dependencies>
