@@ -38,12 +38,20 @@
         <docker.image.name>${project.artifactId}</docker.image.name>
         <jacoco-plugin.version>0.7.7.201606060606</jacoco-plugin.version>
         <jacoco.minCoverage>0.40</jacoco.minCoverage>
-        <sonar.coverage.exclusions>
-            **/config/*,
-            **/util/*,
-            **/NotificationApplication.java
-        </sonar.coverage.exclusions>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <properties>
+                <sonar.coverage.exclusions>
+                    **/config/*,
+                    **/util/*,
+                    **/NotificationApplication.java
+                </sonar.coverage.exclusions>
+            </properties>
+        </profile>
+    </profiles>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/javax.inject/javax.inject -->
