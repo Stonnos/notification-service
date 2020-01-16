@@ -41,7 +41,7 @@
         <sonar.coverage.exclusions>
             **/config/*,
             **/utils/*,
-            **/*NotificationApplication.java
+            **/NotificationApplication.java
         </sonar.coverage.exclusions>
     </properties>
 
