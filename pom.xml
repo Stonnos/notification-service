@@ -37,7 +37,7 @@
         <docker-maven-plugin.version>1.4.3</docker-maven-plugin.version>
         <docker.image.name>${project.artifactId}</docker.image.name>
         <jacoco-plugin.version>0.7.7.201606060606</jacoco-plugin.version>
-        <jacoco.minCoverage>0.40</jacoco.minCoverage>
+        <jacoco.minCoverage>0.65</jacoco.minCoverage>
     </properties>
 
     <profiles>

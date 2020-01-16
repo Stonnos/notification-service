@@ -90,4 +90,15 @@ public class MailSchedulerTest {
         assertThat(email4.getSentDate()).isNull();
         verify(mailSenderService, times(3)).sendEmail(any(Email.class));
     }
+
+    @Test
+    public void testNotSentEmail() throws MessagingException {
+        Email email = createEmail(LocalDateTime.now(), EmailStatus.NEW);
+        emailRepository.save(email);
+        doThrow(new MessagingException()).when(mailSenderService).sendEmail(email);
+        mailScheduler.sendEmails();
+        Email actual = emailRepository.findById(email.getId()).orElse(null);
+        assertThat(actual).isNotNull();
+        assertThat(actual.getStatus()).isEqualTo(EmailStatus.NOT_SENT);
+    }
 }
