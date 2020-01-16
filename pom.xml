@@ -40,7 +40,7 @@
         <jacoco.minCoverage>0.40</jacoco.minCoverage>
         <sonar.coverage.exclusions>
             **/config/*,
-            **/utils/*,
+            **/util/*,
             **/NotificationApplication.java
         </sonar.coverage.exclusions>
     </properties>
