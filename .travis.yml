@@ -6,6 +6,7 @@ services:
 install: true
 addons:
   sonarcloud:
+    organization: $ORGANIZATION_KEY
     token:
       secure: $SONAR_TOKEN
 
