@@ -10,7 +10,7 @@ import org.mapstruct.Mappings;
  * Implements mapping mail request to email entity.
  */
 @Mapper
-public interface EmailRequestMapper {
+public abstract class EmailRequestMapper {
 
     /**
      * Maps email request to email entity.
@@ -21,5 +21,5 @@ public interface EmailRequestMapper {
     @Mappings(
             @Mapping(target = "status", constant = "NEW")
     )
-    Email map(EmailRequest emailRequest);
+    public abstract Email map(EmailRequest emailRequest);
 }
