@@ -1,22 +1,14 @@
 package com.notification.scheduler;
 
+import com.notification.AbstractJpaTest;
 import com.notification.config.MailConfig;
 import com.notification.model.Email;
 import com.notification.model.EmailStatus;
 import com.notification.repository.EmailRepository;
 import com.notification.service.MailSenderService;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
@@ -32,14 +24,8 @@ import static org.mockito.Mockito.verify;
 /**
  * Unit tests for checking {@link MailScheduler} functionality.
  */
-@RunWith(SpringRunner.class)
-@AutoConfigureDataJpa
-@EnableJpaRepositories(basePackageClasses = EmailRepository.class)
-@EntityScan(basePackageClasses = Email.class)
-@EnableConfigurationProperties
-@TestPropertySource("classpath:application.properties")
 @Import(MailConfig.class)
-public class MailSchedulerTest {
+public class MailSchedulerTest extends AbstractJpaTest {
 
     @Inject
     private MailConfig mailConfig;
@@ -50,13 +36,13 @@ public class MailSchedulerTest {
 
     private MailScheduler mailScheduler;
 
-    @Before
+    @Override
     public void init() {
         mailScheduler = new MailScheduler(mailConfig, mailSenderService, emailRepository);
     }
 
-    @After
-    public void after() {
+    @Override
+    public void deleteAll() {
         emailRepository.deleteAll();
     }
 
