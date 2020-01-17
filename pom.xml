@@ -37,7 +37,7 @@
         <docker-maven-plugin.version>1.4.3</docker-maven-plugin.version>
         <docker.image.name>${project.artifactId}</docker.image.name>
         <jacoco-plugin.version>0.7.7.201606060606</jacoco-plugin.version>
-        <jacoco.minCoverage>0.65</jacoco.minCoverage>
+        <jacoco.minCoverage>0.70</jacoco.minCoverage>
     </properties>
 
     <profiles>
@@ -171,9 +171,15 @@
 
         <!--test dependencies-->
         <dependency>
-            <scope>test</scope>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-test</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
