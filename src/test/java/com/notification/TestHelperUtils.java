@@ -1,6 +1,8 @@
 package com.notification;
 
 import com.notification.dto.EmailRequest;
+import com.notification.dto.EmailResponse;
+import com.notification.dto.ResponseStatus;
 import com.notification.model.Email;
 import com.notification.model.EmailStatus;
 import lombok.experimental.UtilityClass;
@@ -34,6 +36,20 @@ public class TestHelperUtils {
         emailRequest.setReceiver(RECEIVER_MAIL_RU);
         emailRequest.setHtml(true);
         return emailRequest;
+    }
+
+    /**
+     * Creates email response.
+     *
+     * @param requestId      - request id
+     * @param responseStatus - response status
+     * @return email response
+     */
+    public static EmailResponse createEmailResponse(String requestId, ResponseStatus responseStatus) {
+        EmailResponse emailResponse = new EmailResponse();
+        emailResponse.setRequestId(requestId);
+        emailResponse.setStatus(responseStatus);
+        return emailResponse;
     }
 
     /**

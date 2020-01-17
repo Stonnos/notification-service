@@ -2,23 +2,18 @@ package com.notification.controller;
 
 import com.notification.TestHelperUtils;
 import com.notification.config.WebServiceTestConfiguration;
-import com.notification.model.Email;
-import com.notification.repository.EmailRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.After;
+import com.notification.dto.EmailRequest;
+import com.notification.dto.EmailResponse;
+import com.notification.dto.ResponseStatus;
+import com.notification.service.EmailService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.xml.transform.StringResult;
@@ -26,10 +21,13 @@ import org.springframework.xml.transform.StringSource;
 
 import javax.inject.Inject;
 import java.io.IOException;
-import java.util.List;
+import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.noFault;
+import static org.springframework.ws.test.server.ResponseMatchers.payload;
 import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
 
 /**
@@ -38,11 +36,6 @@ import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
  * @author Roman Batygin
  */
 @RunWith(SpringRunner.class)
-@AutoConfigureDataJpa
-@EnableJpaRepositories(basePackageClasses = EmailRepository.class)
-@EntityScan(basePackageClasses = Email.class)
-@EnableConfigurationProperties
-@TestPropertySource("classpath:application.properties")
 @Import(WebServiceTestConfiguration.class)
 public class EmailEndpointTest {
 
@@ -51,7 +44,7 @@ public class EmailEndpointTest {
     @Inject
     private Jaxb2Marshaller jaxb2Marshaller;
     @Inject
-    private EmailRepository emailRepository;
+    private EmailService emailService;
 
     private Resource xsdSchema = new ClassPathResource("notification.xsd");
 
@@ -59,32 +52,26 @@ public class EmailEndpointTest {
 
     @Before
     public void init() {
-        deleteAll();
         mockClient = MockWebServiceClient.createClient(applicationContext);
-    }
-
-    @After
-    public void after() {
-        deleteAll();
     }
 
     @Test
     public void testEmailSaving() throws IOException {
-        StringSource request = getPayload(TestHelperUtils.createEmailRequest());
+        EmailRequest emailRequest = TestHelperUtils.createEmailRequest();
+        StringSource request = getPayload(emailRequest);
+        EmailResponse emailResponse =
+                TestHelperUtils.createEmailResponse(UUID.randomUUID().toString(), ResponseStatus.SUCCESS);
+        StringSource response = getPayload(emailResponse);
+        when(emailService.saveEmail(any(EmailRequest.class))).thenReturn(emailResponse);
         mockClient.sendRequest(withPayload(request))
                 .andExpect(noFault())
+                .andExpect(payload(response))
                 .andExpect(validPayload(xsdSchema));
-        List<Email> emails = emailRepository.findAll();
-        Assertions.assertThat(emails).hasSize(1);
     }
 
     private StringSource getPayload(Object object) {
         StringResult stringResult = new StringResult();
         jaxb2Marshaller.marshal(object, stringResult);
         return new StringSource(stringResult.toString());
-    }
-
-    private void deleteAll() {
-        emailRepository.deleteAll();
     }
 }
