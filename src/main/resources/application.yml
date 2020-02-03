@@ -42,3 +42,11 @@ web-service-config:
     locationUri: /ws
     targetNamespace: http://schemas.xmlsoap.org/soap/envelope/
   xsdSchema: notification.xsd
+
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    keyStore: classpath:notification.jks
+    keyAlias: notification
+    keyStorePassword: notification
