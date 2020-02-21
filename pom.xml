@@ -36,7 +36,7 @@
         <logstash-encoder.version>6.2</logstash-encoder.version>
         <docker-maven-plugin.version>1.4.3</docker-maven-plugin.version>
         <docker.image.name>${project.artifactId}</docker.image.name>
-        <jacoco-plugin.version>0.7.7.201606060606</jacoco-plugin.version>
+        <jacoco-plugin.version>0.8.5</jacoco-plugin.version>
         <jacoco.minCoverage>0.70</jacoco.minCoverage>
         <sonar.coverage.exclusions>
             **/config/*,
