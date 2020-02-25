@@ -20,7 +20,7 @@ services:
   notification-service:
     image: notification-service
     container_name: notification-service
-    command: ["/wait-for-it.sh", "notification-db:5432", "--timeout=45", "--", "catalina.sh", "run"]
+    command: ["/wait-for-it.sh", "notification-db:5432", "--timeout=45", "--", "java", "-jar", "notification-service.war"]
     environment:
       TZ: "Asia/Novosibirsk"
       SPRING_PROFILES_ACTIVE: "docker"
