@@ -1,0 +1,11 @@
+groups:
+  - name: alert-rules
+    rules:
+      - alert: service_down
+        expr: up == 0
+        for: 10s
+        labels:
+          severity: page
+        annotations:
+          summary: 'Service {{ $labels.instance }} is unavailable.'
+          description: '{{ $labels.instance }} has been down for more than 10 seconds.'

@@ -1,11 +1,23 @@
-version: '3.5'
+version: "3.5"
 services:
 
+  #nginx:
+  #  build: ./nginx
+  #  image: nginx-server
+  #  container_name: nginx
+  #  ports:
+  #    - "80:80"
+  #    - "443:443"
+    #volumes:
+    #  - ./nginx/conf.d:/etc/nginx/conf.d
+    #networks:
+    #  - default
+
   notification-db:
-    image: postgres:9.6.9
+    build: ./db
+    image: notification-db
     container_name: notification-db
     volumes:
-      - ./scripts/postgresinit.sql:/docker-entrypoint-initdb.d/postgresinit.sql
       - notification-pgdata:/var/lib/postgresql/data
     ports:
       - "5435:5432"
@@ -31,6 +43,54 @@ services:
     depends_on:
       - notification-db
 
+  prometheus:
+    build: ./prometheus
+    image: prometheus
+    container_name: prometheus
+    environment:
+      TZ: "Asia/Novosibirsk"
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus-data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+    #volumes:
+    #  - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - default
+
+  alertmanager:
+    build: ./alertmanager
+    image: alertmanager
+    container_name: alertmanager
+    environment:
+      TZ: "Asia/Novosibirsk"
+    ports:
+      - "9093:9093"
+    networks:
+      - default
+    #volumes:
+    #  - ./alertmanager/:/etc/alertmanager/
+    #command:
+    #  - "-config.file=/etc/alertmanager/alertmanager.yml"
+    #  - "-storage.path=/alertmanager"
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    environment:
+      TZ: "Asia/Novosibirsk"
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - default
+
 networks:
   default:
     name: app-network
@@ -39,3 +99,7 @@ networks:
 volumes:
   notification-pgdata:
     name: notification-pgdata
+  grafana-data:
+    name: grafana-data
+  prometheus-data:
+    name: prometheus-data
