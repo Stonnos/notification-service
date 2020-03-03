@@ -1,4 +1,3 @@
 FROM prom/prometheus
-#RUN rm /etc/prometheus/prometheus.yml
 COPY alert.rules.yml /etc/prometheus/
 COPY prometheus.yml /etc/prometheus/

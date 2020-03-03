@@ -80,16 +80,22 @@ services:
     #  - "-storage.path=/alertmanager"
 
   grafana:
-    image: grafana/grafana
+    build: ./grafana
+    image: grafana
     container_name: grafana
     environment:
       TZ: "Asia/Novosibirsk"
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_LOGIN}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
+      GF_USERS_ALLOW_SIGN_UP: "false"
     ports:
       - "3000:3000"
     volumes:
       - grafana-data:/var/lib/grafana
     networks:
       - default
+    depends_on:
+      - prometheus
 
 networks:
   default:
