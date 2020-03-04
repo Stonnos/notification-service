@@ -79,6 +79,17 @@ services:
     #  - "-config.file=/etc/alertmanager/alertmanager.yml"
     #  - "-storage.path=/alertmanager"
 
+  postgres-exporter:
+    image: wrouesnel/postgres_exporter
+    container_name: postgres-exporter
+    ports:
+      - "9187:9187"
+    environment:
+      TZ: "Asia/Novosibirsk"
+      DATA_SOURCE_NAME: "postgresql://postgres:postgres@notification-db:5432/mail?sslmode=disable"
+    depends_on:
+      - notification-db
+
   grafana:
     build: ./grafana
     image: grafana
