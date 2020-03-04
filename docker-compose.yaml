@@ -86,7 +86,10 @@ services:
       - "9187:9187"
     environment:
       TZ: "Asia/Novosibirsk"
-      DATA_SOURCE_NAME: "postgresql://postgres:postgres@notification-db:5432/mail?sslmode=disable"
+      #DATA_SOURCE_NAME: "postgresql://postgres:postgres@notification-db:5432/mail?sslmode=disable"
+      DATA_SOURCE_URI: ${PG_EXPORTER_URI}
+      DATA_SOURCE_USER: postgres
+      DATA_SOURCE_PASS: postgres
     depends_on:
       - notification-db
 
