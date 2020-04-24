@@ -2,17 +2,18 @@ package com.notification.service;
 
 import com.notification.TestHelperUtils;
 import com.notification.model.EmailStatus;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.time.LocalDateTime;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -23,7 +24,7 @@ import static org.mockito.Mockito.when;
  *
  * @author Roman Batygin
  */
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class MailSenderServiceTest {
 
     @Mock
@@ -31,9 +32,11 @@ public class MailSenderServiceTest {
     @InjectMocks
     private MailSenderService mailSenderService;
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testNullEmail() throws MessagingException {
-        mailSenderService.sendEmail(null);
+    @Test
+    public void testNullEmail() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            mailSenderService.sendEmail(null);
+        });
     }
 
     @Test

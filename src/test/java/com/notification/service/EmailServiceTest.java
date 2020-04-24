@@ -10,14 +10,13 @@ import com.notification.mapping.EmailRequestMapperImpl;
 import com.notification.model.Email;
 import com.notification.repository.EmailRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.context.annotation.Import;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import javax.inject.Inject;
-
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;

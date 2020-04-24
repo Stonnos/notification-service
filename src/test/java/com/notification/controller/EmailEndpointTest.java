@@ -6,16 +6,16 @@ import com.notification.dto.EmailRequest;
 import com.notification.dto.EmailResponse;
 import com.notification.dto.ResponseStatus;
 import com.notification.service.EmailService;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.ws.test.server.MockWebServiceClient;
 import org.springframework.xml.transform.StringResult;
 import org.springframework.xml.transform.StringSource;
@@ -36,7 +36,7 @@ import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
  *
  * @author Roman Batygin
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @Import({WebServiceTestConfiguration.class, EmailEndpoint.class})
 public class EmailEndpointTest {
 
@@ -51,7 +51,7 @@ public class EmailEndpointTest {
 
     private MockWebServiceClient mockClient;
 
-    @Before
+    @BeforeEach
     public void init() {
         mockClient = MockWebServiceClient.createClient(applicationContext);
     }

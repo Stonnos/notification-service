@@ -4,10 +4,10 @@ import com.notification.dto.EmailRequest;
 import com.notification.model.Email;
 import com.notification.model.EmailStatus;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.inject.Inject;
 
@@ -16,7 +16,7 @@ import static com.notification.TestHelperUtils.createEmailRequest;
 /**
  * Unit tests for checking {@link EmailRequestMapper} functionality.
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @Import(EmailRequestMapperImpl.class)
 public class EmailRequestMapperTest {
 

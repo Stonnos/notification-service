@@ -6,7 +6,7 @@ import com.notification.model.Email;
 import com.notification.model.EmailStatus;
 import com.notification.repository.EmailRepository;
 import com.notification.service.MailSenderService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.context.annotation.Import;
 
