@@ -20,10 +20,10 @@ services:
   notification-service:
     image: notification-service
     container_name: notification-service
-    command: ["/wait-for-it.sh", "notification-db:5432", "--timeout=${DB_CONTAINER_WAIT_TIMEOUT}", "--", "java", "-jar", "notification-service.war"]
     environment:
       TZ: ${TIME_ZONE}
       SPRING_PROFILES_ACTIVE: "docker"
+      DB_CONTAINER_WAIT_TIMEOUT: ${DB_CONTAINER_WAIT_TIMEOUT}
     ports:
       - "8082:8080"
     networks:
