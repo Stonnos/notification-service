@@ -4,7 +4,6 @@ import com.notification.TestHelperUtils;
 import com.notification.config.WebServiceTestConfiguration;
 import com.notification.dto.EmailRequest;
 import com.notification.dto.EmailResponse;
-import com.notification.dto.ResponseStatus;
 import com.notification.service.EmailService;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,8 +59,7 @@ public class EmailEndpointTest {
     public void testEmailSaving() throws IOException {
         EmailRequest emailRequest = TestHelperUtils.createEmailRequest();
         StringSource request = getPayload(emailRequest);
-        EmailResponse emailResponse =
-                TestHelperUtils.createEmailResponse(UUID.randomUUID().toString(), ResponseStatus.SUCCESS);
+        EmailResponse emailResponse = TestHelperUtils.createEmailResponse(UUID.randomUUID().toString());
         StringSource response = getPayload(emailResponse);
         when(emailService.saveEmail(any(EmailRequest.class))).thenReturn(emailResponse);
         mockClient.sendRequest(withPayload(request))

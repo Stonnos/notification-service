@@ -1,5 +1,6 @@
 package com.notification.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -8,10 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
+import org.springframework.ws.server.EndpointInterceptor;
+import org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
+
+import java.util.List;
 
 /**
  * Web - service configuration.
@@ -21,9 +26,19 @@ import org.springframework.xml.xsd.XsdSchema;
 @EnableWs
 @Configuration
 @EnableConfigurationProperties(WebServiceConfig.class)
+@RequiredArgsConstructor
 public class WebServiceConfiguration extends WsConfigurerAdapter {
 
     private static final String WS_URL_MAPPINGS = "/ws/*";
+
+    private final WebServiceConfig webServiceConfig;
+
+    @Override
+    public void addInterceptors(List<EndpointInterceptor> interceptors) {
+        PayloadValidatingInterceptor validatingInterceptor = new PayloadValidatingInterceptor();
+        validatingInterceptor.setXsdSchema(notificationSchema());
+        interceptors.add(validatingInterceptor);
+    }
 
     /**
      * Bean for setting up servlet properties.
@@ -42,29 +57,25 @@ public class WebServiceConfiguration extends WsConfigurerAdapter {
     /**
      * Bean for creating xsd schemas binding
      *
-     * @param evaluationSchema - xsd schema
-     * @param webServiceConfig - web service config
      * @return wsdl definition bean
      */
     @Bean(name = "notification")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema evaluationSchema,
-                                                           WebServiceConfig webServiceConfig) {
+    public DefaultWsdl11Definition defaultWsdl11Definition() {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName(webServiceConfig.getWsdlConfig().getPortTypeName());
         wsdl11Definition.setLocationUri(webServiceConfig.getWsdlConfig().getLocationUri());
         wsdl11Definition.setTargetNamespace(webServiceConfig.getWsdlConfig().getTargetNamespace());
-        wsdl11Definition.setSchema(evaluationSchema);
+        wsdl11Definition.setSchema(notificationSchema());
         return wsdl11Definition;
     }
 
     /**
      * Creates xsd schema bean.
      *
-     * @param webServiceConfig - web service config bean
      * @return xsd schema bean
      */
     @Bean
-    public XsdSchema evaluationSchema(WebServiceConfig webServiceConfig) {
+    public XsdSchema notificationSchema() {
         return new SimpleXsdSchema(new ClassPathResource(webServiceConfig.getXsdSchema()));
     }
 }
