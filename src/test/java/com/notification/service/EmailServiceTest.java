@@ -9,9 +9,7 @@ import com.notification.mapping.EmailRequestMapperImpl;
 import com.notification.model.Email;
 import com.notification.repository.EmailRepository;
 import org.assertj.core.api.Assertions;
-import org.junit.Test;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.context.annotation.Import;
 
 import javax.inject.Inject;
