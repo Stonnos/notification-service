@@ -10,6 +10,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import static com.notification.config.WebServiceConfiguration.TARGET_NAMESPACE;
+
 /**
  * Email endpoint.
  */
@@ -18,7 +20,6 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @RequiredArgsConstructor
 public class EmailEndpoint {
 
-    private static final String NAMESPACE_URI = "http://schemas.xmlsoap.org/soap/envelope/";
     private static final String EMAIL_REQUEST_LOCAL_PART = "emailRequest";
 
     private final EmailService emailService;
@@ -29,7 +30,7 @@ public class EmailEndpoint {
      * @param emailRequest - email request
      * @return email response
      */
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = EMAIL_REQUEST_LOCAL_PART)
+    @PayloadRoot(namespace = TARGET_NAMESPACE, localPart = EMAIL_REQUEST_LOCAL_PART)
     @ResponsePayload
     public EmailResponse saveRequest(@RequestPayload EmailRequest emailRequest) {
         return emailService.saveEmail(emailRequest);

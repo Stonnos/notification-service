@@ -29,6 +29,10 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WebServiceConfiguration extends WsConfigurerAdapter {
 
+    public static final String TARGET_NAMESPACE = "http://schemas.xmlsoap.org/soap/envelope/";
+
+    private static final String PORT_TYPE_NAME = "NotificationPort";
+    private static final String LOCATION_URI = "/ws";
     private static final String WS_URL_MAPPINGS = "/ws/*";
 
     private final WebServiceConfig webServiceConfig;
@@ -62,9 +66,9 @@ public class WebServiceConfiguration extends WsConfigurerAdapter {
     @Bean(name = "notification")
     public DefaultWsdl11Definition defaultWsdl11Definition() {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
-        wsdl11Definition.setPortTypeName(webServiceConfig.getWsdlConfig().getPortTypeName());
-        wsdl11Definition.setLocationUri(webServiceConfig.getWsdlConfig().getLocationUri());
-        wsdl11Definition.setTargetNamespace(webServiceConfig.getWsdlConfig().getTargetNamespace());
+        wsdl11Definition.setPortTypeName(PORT_TYPE_NAME);
+        wsdl11Definition.setLocationUri(LOCATION_URI);
+        wsdl11Definition.setTargetNamespace(TARGET_NAMESPACE);
         wsdl11Definition.setSchema(notificationSchema());
         return wsdl11Definition;
     }
