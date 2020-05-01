@@ -76,7 +76,6 @@ Notification service представляет собой SOAP веб - серв�
     <SOAP-ENV:Body>
         <SOAP-ENV:emailResponse>
             <SOAP-ENV:requestId>611bab87-d40e-44e4-8843-2c5e4faaaceb</SOAP-ENV:requestId>
-            <SOAP-ENV:status>SUCCESS</SOAP-ENV:status>
         </SOAP-ENV:emailResponse>
     </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
