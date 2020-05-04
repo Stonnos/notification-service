@@ -38,8 +38,8 @@ import static org.springframework.ws.test.server.ResponseMatchers.validPayload;
  *
  * @author Roman Batygin
  */
-@TestPropertySource("classpath:application.properties")
 @ExtendWith(SpringExtension.class)
+@TestPropertySource("classpath:application.properties")
 @Import({WebServiceTestConfiguration.class, EmailEndpoint.class})
 public class EmailEndpointTest {
 
