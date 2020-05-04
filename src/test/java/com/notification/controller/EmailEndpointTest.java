@@ -75,7 +75,7 @@ public class EmailEndpointTest {
     }
 
     @Test
-    public void testInvalidEmailSaving() throws IOException {
+    public void testInvalidEmailSaving() {
         EmailRequest emailRequest = TestHelperUtils.createEmailRequest();
         emailRequest.setReceiver("email");
         StringSource request = getPayload(emailRequest);
@@ -83,7 +83,7 @@ public class EmailEndpointTest {
     }
 
     @Test
-    public void testEmptyMessageSaving() throws IOException {
+    public void testEmptyMessageSaving() {
         EmailRequest emailRequest = TestHelperUtils.createEmailRequest();
         emailRequest.setMessage(StringUtils.EMPTY);
         StringSource request = getPayload(emailRequest);
@@ -91,7 +91,7 @@ public class EmailEndpointTest {
     }
 
     @Test
-    public void testLargeSubjectSaving() throws IOException {
+    public void testLargeSubjectSaving() {
         EmailRequest emailRequest = TestHelperUtils.createEmailRequest();
         emailRequest.setSubject(StringUtils.repeat('Q', LARGE_SUBJECT_LENGTH));
         StringSource request = getPayload(emailRequest);
