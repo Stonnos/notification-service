@@ -51,7 +51,8 @@ public class WebServiceConfiguration extends WsConfigurerAdapter {
      * @return bean for servlet registration
      */
     @Bean
-    public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
+    public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(
+            ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
         servlet.setApplicationContext(applicationContext);
         servlet.setTransformWsdlLocations(true);
@@ -61,15 +62,16 @@ public class WebServiceConfiguration extends WsConfigurerAdapter {
     /**
      * Bean for creating xsd schemas binding
      *
+     * @param notificationSchema - notification xsd schema
      * @return wsdl definition bean
      */
     @Bean(name = "notification")
-    public DefaultWsdl11Definition defaultWsdl11Definition() {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema notificationSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName(PORT_TYPE_NAME);
         wsdl11Definition.setLocationUri(LOCATION_URI);
         wsdl11Definition.setTargetNamespace(TARGET_NAMESPACE);
-        wsdl11Definition.setSchema(notificationSchema());
+        wsdl11Definition.setSchema(notificationSchema);
         return wsdl11Definition;
     }
 
