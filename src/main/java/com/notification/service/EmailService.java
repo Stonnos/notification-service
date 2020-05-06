@@ -2,7 +2,6 @@ package com.notification.service;
 
 import com.notification.dto.EmailRequest;
 import com.notification.dto.EmailResponse;
-import com.notification.dto.ResponseStatus;
 import com.notification.mapping.EmailRequestMapper;
 import com.notification.model.Email;
 import com.notification.repository.EmailRepository;
@@ -14,7 +13,6 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static com.notification.util.Utils.buildResponse;
-import static com.notification.util.Utils.validateEmailRequest;
 
 /**
  * Email service.
@@ -36,24 +34,13 @@ public class EmailService {
      * @return email response
      */
     public EmailResponse saveEmail(EmailRequest emailRequest) {
-        ResponseStatus responseStatus = ResponseStatus.SUCCESS;
         String uuid = UUID.randomUUID().toString();
         log.info("Received email request with uuid '{}'.", uuid);
-        if (!validateEmailRequest(emailRequest)) {
-            log.warn("Email request with uuid '{}' is invalid!", uuid);
-            responseStatus = ResponseStatus.INVALID_REQUEST_PARAMS;
-        } else {
-            try {
-                Email email = emailRequestMapper.map(emailRequest);
-                email.setUuid(uuid);
-                email.setSaveDate(LocalDateTime.now());
-                emailRepository.save(email);
-                log.info("Email request with uuid '{}' has been saved.", uuid);
-            } catch (Exception ex) {
-                log.error("There was an error while saving email with uuid '{}': {}", uuid, ex.getMessage());
-                responseStatus = ResponseStatus.ERROR;
-            }
-        }
-        return buildResponse(uuid, responseStatus);
+        Email email = emailRequestMapper.map(emailRequest);
+        email.setUuid(uuid);
+        email.setSaveDate(LocalDateTime.now());
+        emailRepository.save(email);
+        log.info("Email request with uuid '{}' has been saved.", uuid);
+        return buildResponse(UUID.randomUUID().toString());
     }
 }

@@ -11,7 +11,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
+        <version>2.2.6.RELEASE</version>
     </parent>
 
     <packaging>war</packaging>
@@ -23,6 +23,7 @@
         <postresql.version>42.2.6</postresql.version>
         <lombok.version>1.18.4</lombok.version>
         <liquibase.version>3.7.0</liquibase.version>
+        <org.apache.commons.lang3.version>3.7</org.apache.commons.lang3.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <assertj.core.version>3.13.1</assertj.core.version>
         <mockito.version>3.2.4</mockito.version>
@@ -101,6 +102,13 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${org.apache.commons.lang3.version}</version>
         </dependency>
 
         <!-- Spring Boot -->

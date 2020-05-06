@@ -37,10 +37,6 @@ mail-config:
   delaySeconds: 10
 
 web-service-config:
-  wsdlConfig:
-    portTypeName: NotificationPort
-    locationUri: /ws
-    targetNamespace: http://schemas.xmlsoap.org/soap/envelope/
   xsdSchema: notification.xsd
 
 management:
