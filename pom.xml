@@ -20,7 +20,7 @@
         <java.version>1.8</java.version>
         <logback.version>1.2.3</logback.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <postresql.version>42.2.6</postresql.version>
+        <postresql.version>42.3.3</postresql.version>
         <lombok.version>1.18.4</lombok.version>
         <liquibase.version>3.7.0</liquibase.version>
         <org.apache.commons.lang3.version>3.7</org.apache.commons.lang3.version>
