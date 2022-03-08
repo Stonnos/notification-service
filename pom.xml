@@ -22,7 +22,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <postresql.version>42.2.6</postresql.version>
         <lombok.version>1.18.4</lombok.version>
-        <liquibase.version>3.7.0</liquibase.version>
+        <liquibase.version>4.8.0</liquibase.version>
         <org.apache.commons.lang3.version>3.7</org.apache.commons.lang3.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <assertj.core.version>3.13.1</assertj.core.version>
